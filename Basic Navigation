@@ -1,0 +1,44 @@
+#include <kipr/botball.h>
+
+int lwheel = 0;
+int rwheel = 1;
+
+int lbumber = 0;
+int button = 1;
+int rbumper = 2;
+
+int main() {
+  forward();
+  turnleft();
+  forward();
+  turnright();
+  backward();
+}
+
+void forward() {
+  motor(lwheel,50);
+  motor(rwheel,50);
+  msleep(5000);
+  ao();
+}
+
+void backward() {
+  motor(lwheel,-50);
+  motor(rwheel,-50);
+  msleep(3000);
+  ao();
+}
+
+void turnleft() {
+  motor(lwheel,-30);
+  motor(rwheel,30);
+  msleep(2000);
+  ao();
+}
+
+void turnright() {
+  motor(lwheel,30);
+  motor(rwheel,-30);
+  msleep(2000);
+  ao();
+}

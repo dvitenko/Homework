@@ -1,3 +1,5 @@
+//Daniel Vitenko and Leo Catalano
+
 #include <kipr/botball.h>
 
 int lwheel = 0;

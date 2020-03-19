@@ -1,0 +1,25 @@
+int lwheel = 0;
+int rwheel = 1; //wheel ports
+
+int lbumber = 0;
+int rbumper = 1; //bumper ports
+
+int main() {
+  while(digital(rbumper) == 0) //move forward until rbumper is pressed
+    forward();
+  ao();
+  while(digital(rbumper) == 0) //turn right until lbumper is pressed
+    turnright();
+  ao(); 
+  return 0; //end program
+}
+
+void forward() { // method to move forward
+  motor(lwheel,50); 
+  motor(rwheel,50);
+}
+
+void turnright() { //method to turn right
+  motor(lwheel,30);
+  motor(rwheel,-30);
+}

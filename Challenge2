@@ -9,7 +9,10 @@ int turnspeed = 30; //robot speeds
 
 int main() {
   turnright();
-  msleep(100);
+  msleep(800);
+  while(rbumper == 0 && lbumper == 0)
+    forward();
+  return 0;
 }
 
 void forward() { // method to move forward

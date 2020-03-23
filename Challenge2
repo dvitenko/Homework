@@ -1,0 +1,28 @@
+int lwheel = 0;
+int rwheel = 2; //wheel ports
+
+int lbumper = 8;
+int rbumper = 9; //bumper ports
+
+int speed = 50;
+int turnspeed = 30; //robot speeds
+
+int main() {
+  turnright();
+  msleep(100);
+}
+
+void forward() { // method to move forward
+  motor(lwheel,speed); 
+  motor(rwheel,speed);
+}
+
+void turnright() { //method to turn right
+  motor(lwheel,turnspeed);
+  motor(rwheel,-turnspeed);
+}
+
+void turnleft() { //method to turn left
+  motor(lwheel,-turnspeed);
+  motor(rwheel,turnspeed);
+}

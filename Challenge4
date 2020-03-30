@@ -1,0 +1,68 @@
+int lwheel = 0;
+int rwheel = 2; //wheel ports
+
+int lbumper = 8;
+int rbumper = 9; //bumper ports
+
+int speed = 50;
+int turnspeed = 30; //robot speeds
+
+int rreflect = 6;
+int lreflect = 5;
+
+int main() {
+  slightright();
+  msleep(2500); // robot moves slightly right
+  ao();
+  while(digital(rbumper) == 0 && digital(lbumper) == 0)
+    forward(); //robot moves forward until it detects wall
+  ao();
+  turnleft();
+  msleep(2000); //robot turns left
+  ao();
+  while(analog(rreflect) < 800) 
+	forward(); //move forward until robot finds black line
+  turnright(); //turn right
+  msleep(800);
+  while(digital(rbumper) == 0 && digital(lbumper) == 0){ //run program until robot hits wall
+	if(analog(rreflect) == 0 && analog(lreflect) == 0){ //if on line, move foward
+	  forward();
+	  msleep(200);
+	}
+	if(analog(rreflect) == 0) //if too far right, turn left
+		turnleft();
+	if(analog(lreflect) == 0) //if too far left, turn right
+		turnright();
+  }
+  ao();
+  turnleft();
+  msleep(1000); //robot turns left
+  ao();
+  while(analog(rreflect) == 0){ //robot runs until it hits black line
+	slightright(); //move foward and slightly right
+	if(digital(rbumper) == 1) //turn left when hits wall
+		turnleft();
+  }
+  ao();
+  return 0; //end program
+}
+
+void forward() { // method to move forward
+  motor(lwheel,speed); 
+  motor(rwheel,speed);
+}
+
+void slightright() { //method to move forward and slightly right
+  motor(lwheel,speed);
+  motor(rwheel,turnspeed);
+}
+
+void turnleft() { //method to turn left
+  motor(lwheel,-turnspeed);
+  motor(rwheel,turnspeed);
+}
+
+void turnright() { //method to turn left
+  motor(lwheel,turnspeed);
+  motor(rwheel,-turnspeed);
+}

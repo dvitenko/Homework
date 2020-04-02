@@ -24,7 +24,7 @@ int main() {
 		forward();
 		msleep(300);
 		printf("count = %d\n" , counter); //printf counter
-    }
+       }
   }
   turnleft();
   msleep(100); //turn left

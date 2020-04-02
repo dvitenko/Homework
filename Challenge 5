@@ -1,0 +1,55 @@
+int lwheel = 0;
+int rwheel = 2; //wheel ports
+
+int lrange = 0;
+int rrange = 2; //distance sensors
+
+int speed = 70;
+int turnspeed = 30; //robot speeds
+
+int rreflect = 6;
+int lreflect = 5; //tophat sensors
+
+int counter = 0; // counter variable
+
+int main() {
+  turnright();
+  msleep(200); // robot turns right
+  while(counter != 4){ // continue until counter hits 4
+	slightright(); //move slightly right
+	if(analog(rrange) < 200) // if too close to the wall, turn left
+		turnleft();
+	if(analog(rreflect) > 700){ //when robot finds black line, add to counter and move forward
+		counter ++;
+		forward();
+		msleep(300);
+		printf("count = %d\n" , counter); //printf counter
+    }
+  }
+  turnleft();
+  msleep(100); //turn left
+  forward();
+  msleep(700); //move forward
+  return 0; // end program
+}
+
+void forward() { // method to move forward
+  motor(lwheel,speed); 
+  motor(rwheel,speed);
+}
+
+void slightright() { //method to move forward and slightly right
+  motor(lwheel,speed);
+  motor(rwheel,turnspeed);
+}
+
+void turnleft() { //method to turn left
+  motor(lwheel,-turnspeed);
+  motor(rwheel,turnspeed);
+  msleep(50);
+}
+
+void turnright() { //method to turn left
+  motor(lwheel,turnspeed);
+  motor(rwheel,-turnspeed);
+}

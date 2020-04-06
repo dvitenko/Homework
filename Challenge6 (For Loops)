@@ -1,0 +1,29 @@
+int rmotor = 2;
+int lmotor = 0;
+
+int speed = 100;
+
+int main()
+{
+	for(int temp = 1; temp <= 6; temp++){
+		forward();
+		backward();
+		printf("Cycle %d completed\n", temp);
+	}	
+		
+
+}
+
+void forward(){
+	motor(rmotor, speed);
+	motor(lmotor, speed);
+	msleep(400);
+	ao();
+}
+
+void backward(){
+	motor(rmotor, -speed);
+	motor(lmotor, -speed);
+	msleep(400);
+	ao();
+}
